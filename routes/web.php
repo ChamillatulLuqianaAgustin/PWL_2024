@@ -1,5 +1,12 @@
 <?php
 
+use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ArticleController;
+
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -75,3 +82,35 @@ Route::get('/user/profile', function() {
     //
 })->name('profile');
 
+
+//CONTROLLER
+//Membuat Controller
+//Langkah d
+Route::get('/hello', [WelcomeController::class,'hello']);
+
+//Langkah f Resource '/' 
+Route::get('/', [PageController::class,'index']);
+
+// Langkah f Resource '/about'
+Route::get('/about', [PageController::class,'about']);
+
+// Langkah f Resource '/articles'
+Route::get('/articles', [PageController::class,'articles']);
+
+// Langkah g Resource '/'
+Route::get('/', [HomeController::class,'index']);
+
+// Langkah g Resource '/about'
+Route::get('/about', [AboutController::class,'about']);
+
+// Langkah g Resource '/articles'
+Route::get('/articles', [ArticleController::class,'articles']);
+
+// RESOURCE CONTROLLER
+// Langkah b
+use App\Http\Controllers\PhotoController;
+Route::resource('photos', PhotoController::class);
+
+// Langkah d
+Route::resource('photos', PhotoController::class)->only(['index', 'show']);
+Route::resource('photos', PhotoController::class)->except(['create', 'store', 'update', 'destroy']);
