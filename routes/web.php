@@ -24,13 +24,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// BASIC ROUTING
-// Langkah b
+//BASIC ROUTING
+//Langkah b
 Route::get('/hello', function () { 
     return 'Hello World';
 });
 
-// Langkah d
+//Langkah d
 Route::get('/world', function () { 
     return 'World';
 });
@@ -91,26 +91,44 @@ Route::get('/hello', [WelcomeController::class,'hello']);
 //Langkah f Resource '/' 
 Route::get('/', [PageController::class,'index']);
 
-// Langkah f Resource '/about'
+//Langkah f Resource '/about'
 Route::get('/about', [PageController::class,'about']);
 
-// Langkah f Resource '/articles'
+//Langkah f Resource '/articles'
 Route::get('/articles', [PageController::class,'articles']);
 
-// Langkah g Resource '/'
+//Langkah g Resource '/'
 Route::get('/', [HomeController::class,'index']);
 
-// Langkah g Resource '/about'
+//Langkah g Resource '/about'
 Route::get('/about', [AboutController::class,'about']);
 
-// Langkah g Resource '/articles'
+//Langkah g Resource '/articles'
 Route::get('/articles', [ArticleController::class,'articles']);
 
-// RESOURCE CONTROLLER
-// Langkah b
+//RESOURCE CONTROLLER
+//Langkah b
 use App\Http\Controllers\PhotoController;
 Route::resource('photos', PhotoController::class);
 
-// Langkah d
+//Langkah d
 Route::resource('photos', PhotoController::class)->only(['index', 'show']);
 Route::resource('photos', PhotoController::class)->except(['create', 'store', 'update', 'destroy']);
+
+//VIEW
+//Membuat View
+//Langkah b
+Route::get('/greeting', function () {
+    return view('hello', ['name' => 'Chamillatul']);
+});
+
+//View dalam direktori
+//Langkah c
+Route::get('/greeting', function () {
+    return view('blog.hello', ['name' => 'Chamillatul']);
+});
+
+//Menampilkan View dari Controller
+//Langkah b
+Route::get('/greeting', [WelcomeController::class,'greeting']);
+
